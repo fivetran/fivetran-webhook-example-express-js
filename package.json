@@ -1,0 +1,29 @@
+{
+  "name": "fivetran-webhook-example-express",
+  "version": "1.0.0",
+  "description": "A simple example of how to ingest webhooks from Fivetran",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fivetran-jimmyhooker/fivetran-webhook-example-express-js.git"
+  },
+  "keywords": [
+    "fivetran",
+    "express",
+    "js"
+  ],
+  "author": "Jimmy Hooker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fivetran-jimmyhooker/fivetran-webhook-example-express-js/issues"
+  },
+  "homepage": "https://github.com/fivetran-jimmyhooker/fivetran-webhook-example-express-js#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3"
+  }
+}
