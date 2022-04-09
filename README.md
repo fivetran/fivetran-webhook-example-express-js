@@ -11,6 +11,8 @@ You'll need a Fivetran account and your key and secret that you can find in sett
 
 In addition, head over to Ngrok, create an account, and install it: https://ngrok.com/download
 
+And finally, make sure you have [Node](https://nodejs.org/en/) installed (I generally stick to LTS). 
+
 ### Setup the project
 This will just install some node dependencies and start up the server on port `4242`. Run these from the root of the project folder. 
 - Run `npm install`
