@@ -24,6 +24,7 @@
   "homepage": "https://github.com/fivetran-jimmyhooker/fivetran-webhook-example-express-js#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cli-color": "^2.0.2",
     "express": "^4.17.3"
   }
 }
