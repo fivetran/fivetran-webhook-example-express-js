@@ -23,7 +23,6 @@ function checkSignature(request) {
     var actualSignature = request.header('x-fivetran-signature-256');
     if (actualSignature) {
         var expectedSignature = crypto.createHmac('sha256', SIGNATURE_SECRET).update(request.body).digest('hex');
-
         if (actualSignature.toUpperCase() === expectedSignature.toUpperCase()) {
             console.log(clc.green('Signature OK'));
         } else {
