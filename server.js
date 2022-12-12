@@ -22,18 +22,20 @@ function dumpPayload(payload) {
 function checkSignature(request) {
     var actualSignature = request.header('x-fivetran-signature-256');
     if (actualSignature) {
-        var payloadString = JSON.stringify(request.body);
-        var expectedSignature = crypto.createHmac('sha256', SIGNATURE_SECRET).update(payloadString).digest('hex');
+        var expectedSignature = crypto.createHmac('sha256', SIGNATURE_SECRET).update(request.body).digest('hex');
+
         if (actualSignature.toUpperCase() === expectedSignature.toUpperCase()) {
             console.log(clc.green('Signature OK'));
         } else {
+            console.log(clc.red(actualSignature.toUpperCase()));
+            console.log(clc.red(expectedSignature.toUpperCase()));
             console.log(clc.red('Signature mismatch'));
         }
     }
 }
 
-app.use(bodyParser.json({ extended: true }));
-app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+app.use(bodyParser.text({type: 'application/json', defaultCharset: 'utf-8'}));
+app.post('/', (request, response) => {
     dumpHeaders(request.headers);
     dumpPayload(request.body);
     checkSignature(request);
@@ -41,4 +43,4 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
 
     response.send();
 });
-app.listen(4242, () => console.log('Running on port 4242'));
+app.listen(4141, () => console.log('Running on port 4141'));
