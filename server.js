@@ -5,34 +5,32 @@ const clc = require('cli-color');
 const crypto = require('crypto');
 
 const SIGNATURE_SECRET = 'my_secret';
-const app = express();
 
-function dumpHeaders(headers) {
+const dumpHeaders = (headers) => {
     console.log(clc.cyan('Headers'));
     console.log(headers);
     console.log(os.EOL);
 }
 
-function dumpPayload(payload) {
+const dumpPayload = (payload) => {
     console.log(clc.cyan('Payload'))
     console.log(payload);
     console.log(os.EOL);
 }
 
-function checkSignature(request) {
+const checkSignature = (request) => {
     var actualSignature = request.header('x-fivetran-signature-256');
     if (actualSignature) {
         var expectedSignature = crypto.createHmac('sha256', SIGNATURE_SECRET).update(request.body).digest('hex');
         if (actualSignature.toUpperCase() === expectedSignature.toUpperCase()) {
             console.log(clc.green('Signature OK'));
         } else {
-            console.log(clc.red(actualSignature.toUpperCase()));
-            console.log(clc.red(expectedSignature.toUpperCase()));
             console.log(clc.red('Signature mismatch'));
         }
     }
 }
 
+const app = express();
 app.use(bodyParser.text({type: 'application/json', defaultCharset: 'utf-8'}));
 app.post('/', (request, response) => {
     dumpHeaders(request.headers);
