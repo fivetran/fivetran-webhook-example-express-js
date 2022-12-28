@@ -1,10 +1,12 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
 const os = require('os');
 const clc = require('cli-color');
 const crypto = require('crypto');
 
-const SIGNATURE_SECRET = 'my_secret';
+dotenv.config();
+const signatureSecret = process.env.SIGNATURE_SECRET;
 
 const dumpHeaders = (headers) => {
     console.log(clc.cyan('Headers'));
@@ -20,8 +22,8 @@ const dumpPayload = (payload) => {
 
 const checkSignature = (request) => {
     var actualSignature = request.header('x-fivetran-signature-256');
-    if (actualSignature) {
-        var expectedSignature = crypto.createHmac('sha256', SIGNATURE_SECRET).update(request.body).digest('hex');
+    if (actualSignature && signatureSecret) {
+        var expectedSignature = crypto.createHmac('sha256', signatureSecret).update(request.body).digest('hex');
         if (actualSignature.toUpperCase() === expectedSignature.toUpperCase()) {
             console.log(clc.green('Signature OK'));
         } else {
