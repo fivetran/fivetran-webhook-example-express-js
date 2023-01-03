@@ -1,5 +1,5 @@
 # Fivetran Webhooks Test Project in Express.js
-A simple example of how to ingest webhooks from Fivetran!
+A simple example of how to ingest webhooks from Fivetran! Check out the [same example in Python/Flask](https://github.com/fivetran-jimmyhooker/fivetran-webhook-example-python-flask)!
 
 ## Setup
 We'll use a really simple Express.js server combined with Ngrok to locally test webhooks. 
