@@ -13,7 +13,7 @@ In addition, head over to Ngrok, create an account, and install it: https://ngro
 
 And finally, make sure you have [Node](https://nodejs.org/en/) installed (I generally stick to LTS). 
 
-### Setup the project
+### Set up the project
 If you are signing your webhooks and want to enable signature verification, create a `.env` file in the root of the project and add your signing secret in the below format:
 ```
 SIGNATURE_SECRET=
